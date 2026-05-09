@@ -1,59 +1,40 @@
 # Campus Notification Platform
 
-A full-stack campus notification platform that delivers real-time updates to students regarding **Placements**, **Events**, and **Results**.
+Full stack notification system for campus updates - placements, results, events.
 
-## Project Structure
+## Setup
 
-```
-├── logging_middleware/          → Reusable logging package (TypeScript)
-├── notification_system_design.md → System design document (Stages 1-7)
-├── notification_app_be/         → Express backend with priority algorithm
-├── notification_app_fe/         → React frontend (Vite)
-└── .gitignore
-```
-
-## Quick Start
-
-### 1. Logging Middleware (build first)
-
+### Logging Middleware
 ```bash
 cd logging_middleware
 npm install
 npm run build
 ```
 
-### 2. Backend
-
+### Backend
 ```bash
 cd notification_app_be
 npm install
-cp .env.example .env   # fill in your credentials
+cp .env.example .env    # add your credentials
 npm run dev
 ```
+Runs on http://localhost:5001
 
-Runs on `http://localhost:5000`
-
-### 3. Frontend
-
+### Frontend
 ```bash
 cd notification_app_fe
 npm install
 npm run dev
 ```
+Runs on http://localhost:3000
 
-Runs on `http://localhost:3000`
+## API
 
-## API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/notifications` | All notifications (supports `type`, `limit`, `page` query params) |
-| GET | `/api/notifications/priority` | Top N priority notifications (supports `n`, `type` query params) |
-| GET | `/api/health` | Health check |
+- `GET /api/notifications` - all notifications (query params: type, limit, page)
+- `GET /api/notifications/priority?n=10` - top N by priority score
+- `GET /api/health` - health check
 
 ## Tech Stack
-
-- **Frontend:** React 18, Vite, TypeScript, Vanilla CSS
-- **Backend:** Express.js, TypeScript
-- **Logging:** Custom middleware posting to evaluation server
-- **Priority Algorithm:** Weighted scoring (type importance × recency decay)
+- React + Vite + TypeScript (frontend)
+- Express + TypeScript (backend)
+- Vanilla CSS
